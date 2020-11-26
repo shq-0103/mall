@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "global": "^4.4.0",
     "swiper": "5.x",
+    "terser-webpack-plugin": "^5.0.3",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.4.9",
