@@ -71,6 +71,7 @@ export default {
         })
         .then((res) => {
           this.$cookie.set("userId", res.id, { expire: "1M" });
+          this.$store.dispatch("saveUserName", res.username);
           //to-do保存用户名
           this.$router.push("/index");
         });

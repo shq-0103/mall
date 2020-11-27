@@ -10,11 +10,12 @@
         </div>
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{ username }}</a>
-          <a href="javascript:;" v-if="username" @click="login">登录</a>
-          <a href="javascript:;" v-if="username">我的订单</a>
+          <a href="javascript:;" v-if="!username" @click="login">登录</a>
+          <a href="javascript:;" v-if="username" @click="login">退出</a>
+          <a href="/#/order/list:;" v-if="username">我的订单</a>
           <!-- <a href="javascript:;">注册</a> -->
           <a href="javascript:;" class="my-cart" @click="goToCart"
-            ><span class="icon-cart"></span>购物车</a
+            ><span class="icon-cart"></span>购物车({{ cartCount }})</a
           >
         </div>
       </div>
@@ -173,9 +174,16 @@ export default {
   data() {
     //服务于当前组件
     return {
-      username: "",
       photoList: [],
     };
+  },
+  computed: {
+    username() {
+      return this.$store.state.username;
+    },
+    cartCount() {
+      return this.$store.state.cartCount;
+    },
   },
   mounted() {
     this.getProductList();
@@ -185,7 +193,7 @@ export default {
       this.axio
         .get("/products", {
           params: {
-            categoryId: "100012",
+            categoryId: "100013",
           },
         })
         .then((res) => {
@@ -197,6 +205,9 @@ export default {
     login() {
       this.$router.push("/login");
     },
+    // goToCart() {
+    //   this.$router.push("/cart");
+    // },
   },
 };
 </script>
